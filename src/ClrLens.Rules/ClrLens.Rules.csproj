@@ -1,0 +1,4 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><AssemblyName>ClrLens.Rules</AssemblyName><RootNamespace>ClrLens.Rules</RootNamespace></PropertyGroup>
+  <ItemGroup><ProjectReference Include="../ClrLens.Core/ClrLens.Core.csproj" /><ProjectReference Include="../ClrLens.Analysis/ClrLens.Analysis.csproj" /></ItemGroup>
+</Project>

@@ -1,0 +1,4 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><AssemblyName>ClrLens.Tests.Optimization</AssemblyName><RootNamespace>ClrLens.Tests.Optimization</RootNamespace></PropertyGroup>
+  <ItemGroup><ProjectReference Include="../../src/ClrLens.Optimizer/ClrLens.Optimizer.csproj" /><ProjectReference Include="../../src/ClrLens.Verification/ClrLens.Verification.csproj" /></ItemGroup>
+</Project>

@@ -1,0 +1,4 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><AssemblyName>ClrLens.Reporting</AssemblyName><RootNamespace>ClrLens.Reporting</RootNamespace></PropertyGroup>
+  <ItemGroup><ProjectReference Include="../ClrLens.Core/ClrLens.Core.csproj" /></ItemGroup>
+</Project>

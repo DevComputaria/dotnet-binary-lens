@@ -1,0 +1,3 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><AssemblyName>ClrLens.Core</AssemblyName><RootNamespace>ClrLens.Core</RootNamespace></PropertyGroup>
+</Project>

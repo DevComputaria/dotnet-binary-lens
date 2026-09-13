@@ -1,0 +1,4 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><AssemblyName>ClrLens.Rewriter</AssemblyName><RootNamespace>ClrLens.Rewriter</RootNamespace></PropertyGroup>
+  <ItemGroup><ProjectReference Include="../ClrLens.Core/ClrLens.Core.csproj" /><ProjectReference Include="../ClrLens.IR/ClrLens.IR.csproj" /></ItemGroup>
+</Project>
