@@ -8,6 +8,7 @@ O formato segue as convenções do [Keep a Changelog](https://keepachangelog.com
 
 ### Added
 
+- CFG e análises de loops em `ClrLens.Analysis`, com fluxo normal/excepcional, dominadores, SCCs, backedges e loops naturais.
 - IR tipada com `ValueId`, nodes, flags de efeitos, provenance, locals SSA-like e regiões EH.
 - Modelos e decoder CIL em `ClrLens.IL` com operandos, branches, stack diagnostics e EH regions.
 - `AssemblyReader` e `AssemblyModel` para ingestão segura de PE/metadata.
@@ -38,6 +39,7 @@ O formato segue as convenções do [Keep a Changelog](https://keepachangelog.com
 
 ### Verified
 
+- T07 CFG harness: PASS, 18 CFGs, 3 loops naturais e 3 arestas excepcionais.
 - T06 IR harness: PASS, 163 nodes, 64 SSA-like values e 6 allocation nodes.
 - T05 decoder harness: PASS, corpos CIL decodificados sem executar métodos, branches validados e EH preservado.
 - T04 ingestion harness: PASS, DLL válida analisada sem executar métodos; input inválido e ausente produziram diagnósticos estruturados.

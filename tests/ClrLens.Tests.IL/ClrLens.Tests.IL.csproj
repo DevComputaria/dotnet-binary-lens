@@ -8,6 +8,7 @@
     <ProjectReference Include="../../src/ClrLens.PE/ClrLens.PE.csproj" />
     <ProjectReference Include="../../src/ClrLens.IL/ClrLens.IL.csproj" />
     <ProjectReference Include="../../src/ClrLens.IR/ClrLens.IR.csproj" />
+    <ProjectReference Include="../../src/ClrLens.Analysis/ClrLens.Analysis.csproj" />
     <ProjectReference Include="../fixtures/ClrLens.SampleFixtures/ClrLens.SampleFixtures.csproj" />
   </ItemGroup>
 </Project>

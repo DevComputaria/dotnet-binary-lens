@@ -80,6 +80,15 @@
 - Harness: PASS — 163 nodes, 64 values SSA-like e 6 allocation nodes.
 - Limitação registrada: calls/ret com stack behavior variável aguardam resolução por assinaturas metadata-aware em fase posterior.
 
+### 2026-09-13 — T07 concluída
+
+- Criados `BasicBlock`, `ControlFlowEdge`, `NaturalLoop` e `ControlFlowGraph`.
+- Criado `ControlFlowGraphBuilder` em `src/ClrLens.Analysis/ControlFlowGraph.cs`.
+- Implementados `E_N`, `E_X`, dominators, post-dominators, SCCs, backedges e loops naturais.
+- Loops naturais são filtrados por dominância do header; SCCs preservam ciclos irreduzíveis.
+- `dotnet build ClrLens.sln --no-restore`: PASS, 0 warnings, 0 errors.
+- Harness: PASS — 18 CFGs, 3 loops naturais e 3 arestas excepcionais.
+
 ## Próxima ação
 
 Executar Task 1.1: criar a solução .NET e os limites dos projetos `ClrLens.*`, após selecionar e registrar o SDK/TFM alvo.

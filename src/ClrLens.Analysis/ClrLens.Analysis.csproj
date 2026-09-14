@@ -1,4 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup><AssemblyName>ClrLens.Analysis</AssemblyName><RootNamespace>ClrLens.Analysis</RootNamespace></PropertyGroup>
+  <PropertyGroup>
+    <AssemblyName>ClrLens.Analysis</AssemblyName>
+    <RootNamespace>ClrLens.Analysis</RootNamespace>
+    <NoWarn>$(NoWarn);CS1591;CA1859</NoWarn>
+  </PropertyGroup>
   <ItemGroup><ProjectReference Include="../ClrLens.Core/ClrLens.Core.csproj" /><ProjectReference Include="../ClrLens.IR/ClrLens.IR.csproj" /></ItemGroup>
 </Project>

@@ -13,7 +13,7 @@
 |---|---|---|
 | 1. Fundação | T01–T03 | ✅ Concluída |
 | 2. PE, CIL e IR | T04–T06 | ✅ Concluída |
-| 3. CFG e findings | T07–T09 | ⬜ Não iniciada |
+| 3. CFG e findings | T07–T09 | 🔵 Em andamento — T07 concluída |
 | 4. Análise matemática | T10–T12 | ⬜ Não iniciada |
 | 5. Pessimismo e relatórios | T13–T15 | ⬜ Não iniciada |
 | 6. Reescrita e validação | T16–T18 | ⬜ Não iniciada |
@@ -27,7 +27,7 @@
 - [T04 — Ingestão PE e metadata](task-04-ingestao-pe-metadata.md) ✅
 - [T05 — Decoder CIL e stack](task-05-decoder-cil-stack.md) ✅
 - [T06 — IR tipada](task-06-ir-tipada.md) ✅
-- [T07 — CFG e loops](task-07-cfg-loops.md)
+- [T07 — CFG e loops](task-07-cfg-loops.md) ✅
 - [T08 — Call graph e efeitos](task-08-call-graph-efeitos.md)
 - [T09 — Findings estruturais](task-09-findings-estruturais.md)
 - [T10 — Domínios abstratos](task-10-dominios-abstratos.md)
