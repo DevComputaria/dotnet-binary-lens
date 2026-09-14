@@ -8,6 +8,7 @@ O formato segue as convenções do [Keep a Changelog](https://keepachangelog.com
 
 ### Added
 
+- IR tipada com `ValueId`, nodes, flags de efeitos, provenance, locals SSA-like e regiões EH.
 - Modelos e decoder CIL em `ClrLens.IL` com operandos, branches, stack diagnostics e EH regions.
 - `AssemblyReader` e `AssemblyModel` para ingestão segura de PE/metadata.
 - Diagnósticos estruturados para input ausente, inválido, grande, sem metadata, timeout e falhas de leitura.
@@ -37,6 +38,7 @@ O formato segue as convenções do [Keep a Changelog](https://keepachangelog.com
 
 ### Verified
 
+- T06 IR harness: PASS, 163 nodes, 64 SSA-like values e 6 allocation nodes.
 - T05 decoder harness: PASS, corpos CIL decodificados sem executar métodos, branches validados e EH preservado.
 - T04 ingestion harness: PASS, DLL válida analisada sem executar métodos; input inválido e ausente produziram diagnósticos estruturados.
 - T03 fixture harness: PASS, 6 tipos, 18 métodos e SHA-256 validado sem executar métodos da fixture.

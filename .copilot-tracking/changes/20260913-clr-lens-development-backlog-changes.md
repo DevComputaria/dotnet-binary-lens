@@ -70,6 +70,16 @@
 - `dotnet build ClrLens.sln --no-restore`: PASS, 0 warnings, 0 errors.
 - Harness: PASS — corpos CIL decodificados, nenhum branch inválido e regiões EH preservadas.
 
+### 2026-09-13 — T06 concluída
+
+- Criados `ValueId`, `IrNode`, `IrOperationKind`, `IrDiagnostic` e `MethodIr` em `src/ClrLens.IR`.
+- Criado `CilToIrBuilder` para normalizar constants, args, locals, binary/unary, fields, calls, allocations, boxing, branches, switch, returns e throws.
+- Preservados offset IL, opcode original, flags de efeitos e regiões EH.
+- Harness validou provenance, values SSA-like, allocations e EH sem executar métodos.
+- `dotnet build ClrLens.sln --no-restore`: PASS, 0 warnings, 0 errors.
+- Harness: PASS — 163 nodes, 64 values SSA-like e 6 allocation nodes.
+- Limitação registrada: calls/ret com stack behavior variável aguardam resolução por assinaturas metadata-aware em fase posterior.
+
 ## Próxima ação
 
 Executar Task 1.1: criar a solução .NET e os limites dos projetos `ClrLens.*`, após selecionar e registrar o SDK/TFM alvo.
