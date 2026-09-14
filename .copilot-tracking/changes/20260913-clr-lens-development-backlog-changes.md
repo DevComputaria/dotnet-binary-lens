@@ -41,6 +41,16 @@
 - Smoke test temporário: PASS para contrato válido, rejeição de contrato inválido e serialização determinística.
 - Observação: o runner de testes permanente permanece planejado para T03.
 
+### 2026-09-13 — T03 concluída
+
+- Criada fixture independente `tests/fixtures/ClrLens.SampleFixtures`.
+- Cobertos loops, EH, branches, allocations, boxing, payload externo, static retention, generics e delegates.
+- Criado input inválido controlado e manifesto com hash/contagens esperados.
+- `ClrLens.Tests.IL` convertido em harness executável usando apenas leitura PE/metadata e SHA-256.
+- `dotnet build ClrLens.sln --no-restore`: PASS, 0 warnings, 0 errors.
+- Harness: PASS, 6 tipos, 18 métodos, SHA256 `41996472F84A50C73EB8724E183B669FA650450CBB32B567685E0CC74749949C`.
+- Strong-name, R2R e NativeAOT permanecem como artefatos gerados em pipeline seguro, conforme documentado no manifesto.
+
 ## Próxima ação
 
 Executar Task 1.1: criar a solução .NET e os limites dos projetos `ClrLens.*`, após selecionar e registrar o SDK/TFM alvo.

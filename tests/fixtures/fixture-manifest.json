@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "0.1",
+  "assemblies": [
+    {
+      "project": "ClrLens.SampleFixtures",
+      "expectedHash": "41996472F84A50C73EB8724E183B669FA650450CBB32B567685E0CC74749949C",
+      "expectedTypeCount": 6,
+      "expectedMethodCount": 18,
+      "coverage": ["loops", "exception-handling", "branches", "allocations", "boxing", "external-payload", "static-retention", "generics", "delegates"],
+      "mustContainTypes": ["ClrLens.SampleFixtures.LoopPatterns", "ClrLens.SampleFixtures.RetentionPatterns", "ClrLens.SampleFixtures.GenericContainer`1"],
+      "mustContainMethods": ["LinearLoop", "NestedLoop", "ExceptionFlow", "Allocate", "BoxValue", "MaterializeExternal", "MaterializeGeneric", "CreateDelegate", "Retain"]
+    },
+    {
+      "project": "invalid-metadata.bin",
+      "coverage": ["invalid-metadata"],
+      "expectedStatus": "unsupported"
+    }
+  ]
+}

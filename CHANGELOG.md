@@ -8,6 +8,10 @@ O formato segue as convenções do [Keep a Changelog](https://keepachangelog.com
 
 ### Added
 
+- Fixture `ClrLens.SampleFixtures` com padrões de loops, EH, branches, allocations, boxing, payload externo, retenção, generics e delegates.
+- Harness determinístico de metadata em `ClrLens.Tests.IL`.
+- Manifesto de fixtures com contagens e SHA-256 esperado.
+- Fixture de input inválido para validar diagnóstico de formato não suportado.
 - Contratos imutáveis de domínio, serializer determinístico e validador de invariantes para reports.
 - Schemas versionados para analysis reports, bound contracts e suppressions.
 - Exemplos de contrato válido e inválido para validação.
@@ -29,6 +33,7 @@ O formato segue as convenções do [Keep a Changelog](https://keepachangelog.com
 
 ### Verified
 
+- T03 fixture harness: PASS, 6 tipos, 18 métodos e SHA-256 validado sem executar métodos da fixture.
 - T02 smoke test: contrato `EXTERNAL_CONTRACT` aceito, contrato inválido rejeitado e serialização determinística confirmada.
 - `dotnet restore ClrLens.sln` executado com sucesso.
 - `dotnet build ClrLens.sln --no-restore` executado com sucesso.
