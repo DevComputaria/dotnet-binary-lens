@@ -1,56 +1,27 @@
-using System.Reflection.Metadata;
-using System.Reflection.PortableExecutable;
-using System.Security.Cryptography;
+using ClrLens.PE;
 using ClrLens.SampleFixtures;
 
 var fixtureAssemblyPath = typeof(FixtureMarker).Assembly.Location;
-var fixtureBytes = await File.ReadAllBytesAsync(fixtureAssemblyPath);
-var fixtureHash = Convert.ToHexString(SHA256.HashData(fixtureBytes));
-
-using var fixtureStream = File.OpenRead(fixtureAssemblyPath);
-using var peReader = new PEReader(fixtureStream);
-if (!peReader.HasMetadata)
-    throw new InvalidDataException("The sample fixture has no managed metadata.");
-
-var metadata = peReader.GetMetadataReader();
-var typeNames = metadata.TypeDefinitions
-    .Select(metadata.GetTypeDefinition)
-    .Select(type => metadata.GetString(type.Name))
-    .ToHashSet(StringComparer.Ordinal);
-
-var methodNames = metadata.MethodDefinitions
-    .Select(metadata.GetMethodDefinition)
-    .Select(method => metadata.GetString(method.Name))
-    .ToHashSet(StringComparer.Ordinal);
-
-var requiredTypes = new[] { "LoopPatterns", "RetentionPatterns", "GenericContainer`1" };
-var requiredMethods = new[]
-{
-    "LinearLoop", "NestedLoop", "ExceptionFlow", "Allocate", "BoxValue",
-    "MaterializeExternal", "MaterializeGeneric", "CreateDelegate", "Retain"
-};
-
-foreach (var requiredType in requiredTypes)
-    Assert(typeNames.Contains(requiredType), $"Missing fixture type: {requiredType}");
-foreach (var requiredMethod in requiredMethods)
-    Assert(methodNames.Contains(requiredMethod), $"Missing fixture method: {requiredMethod}");
+var reader = new AssemblyReader();
+var valid = await reader.ReadAsync(fixtureAssemblyPath);
+Assert(valid.IsSuccess, string.Join("; ", valid.Diagnostics.Select(d => d.Message)));
+var model = valid.Model ?? throw new InvalidOperationException("Valid fixture did not produce an AssemblyModel.");
+Assert(model.Identity.Sha256.Length == 64, "Assembly hash was not captured.");
+Assert(model.TypeCount >= 6, "Expected fixture types were not discovered.");
+Assert(model.MethodCount >= 18, "Expected fixture methods were not discovered.");
+Assert(model.HasMetadata, "Managed metadata should be available for offset-based analysis.");
+Assert(model.AssemblyReferences.Count > 0, "Assembly references were not captured.");
 
 var invalidMetadataPath = Path.Combine(Directory.GetCurrentDirectory(), "tests", "fixtures", "unsupported", "invalid-metadata.bin");
 Assert(File.Exists(invalidMetadataPath), "Invalid metadata fixture is missing.");
-using (var invalidStream = File.OpenRead(invalidMetadataPath))
-{
-    try
-    {
-        using var invalidReader = new PEReader(invalidStream);
-        Assert(!invalidReader.HasMetadata, "Invalid fixture unexpectedly contains metadata.");
-    }
-    catch (BadImageFormatException)
-    {
-        // Expected: malformed/non-PE input must be handled as unsupported.
-    }
-}
+var invalid = await reader.ReadAsync(invalidMetadataPath);
+Assert(!invalid.IsSuccess, "Invalid metadata fixture was accepted.");
+Assert(invalid.Diagnostics.Any(d => d.Code is AssemblyDiagnosticCode.InvalidPe or AssemblyDiagnosticCode.MissingMetadata), "Invalid input diagnostic was not structured.");
 
-Console.WriteLine($"Fixture harness: PASS ({metadata.TypeDefinitions.Count} types, {metadata.MethodDefinitions.Count} methods, SHA256={fixtureHash})");
+var missing = await reader.ReadAsync(Path.Combine(Directory.GetCurrentDirectory(), "does-not-exist.dll"));
+Assert(!missing.IsSuccess && missing.Diagnostics.Any(d => d.Code == AssemblyDiagnosticCode.FileNotFound), "Missing input diagnostic was not structured.");
+
+Console.WriteLine($"T04 ingestion harness: PASS ({model.Identity.Name}, {model.TypeCount} types, {model.MethodCount} methods, PDB={model.HasPdb})");
 
 static void Assert(bool condition, string message)
 {

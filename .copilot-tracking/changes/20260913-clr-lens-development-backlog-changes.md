@@ -51,6 +51,16 @@
 - Harness: PASS, 6 tipos, 18 métodos, SHA256 `41996472F84A50C73EB8724E183B669FA650450CBB32B567685E0CC74749949C`.
 - Strong-name, R2R e NativeAOT permanecem como artefatos gerados em pipeline seguro, conforme documentado no manifesto.
 
+### 2026-09-13 — T04 concluída
+
+- Criado `AssemblyReader` em `src/ClrLens.PE/AssemblyIngestion.cs` usando `PEReader`/`MetadataReader`.
+- Criados `AssemblyModel`, `AssemblyDiagnostic` e `AssemblyIngestionOptions`.
+- Implementados SHA-256, TFM, arquitetura, referências, contagens de tipos/métodos, PDB, strong name e R2R.
+- Implementados limites de tamanho, timeout e cancelamento.
+- Harness validou DLL válida, metadata disponível, PDB opcional, input inválido e caminho inexistente.
+- `dotnet build ClrLens.sln --no-restore`: PASS, 0 warnings, 0 errors.
+- Harness: PASS — `ClrLens.SampleFixtures`, 6 tipos, 18 métodos, sem execução de métodos da fixture.
+
 ## Próxima ação
 
 Executar Task 1.1: criar a solução .NET e os limites dos projetos `ClrLens.*`, após selecionar e registrar o SDK/TFM alvo.

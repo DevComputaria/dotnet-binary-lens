@@ -8,6 +8,9 @@ O formato segue as convenções do [Keep a Changelog](https://keepachangelog.com
 
 ### Added
 
+- `AssemblyReader` e `AssemblyModel` para ingestão segura de PE/metadata.
+- Diagnósticos estruturados para input ausente, inválido, grande, sem metadata, timeout e falhas de leitura.
+- Detecção de hash SHA-256, TFM, arquitetura, referências, PDB, strong name e ReadyToRun.
 - Fixture `ClrLens.SampleFixtures` com padrões de loops, EH, branches, allocations, boxing, payload externo, retenção, generics e delegates.
 - Harness determinístico de metadata em `ClrLens.Tests.IL`.
 - Manifesto de fixtures com contagens e SHA-256 esperado.
@@ -33,6 +36,7 @@ O formato segue as convenções do [Keep a Changelog](https://keepachangelog.com
 
 ### Verified
 
+- T04 ingestion harness: PASS, DLL válida analisada sem executar métodos; input inválido e ausente produziram diagnósticos estruturados.
 - T03 fixture harness: PASS, 6 tipos, 18 métodos e SHA-256 validado sem executar métodos da fixture.
 - T02 smoke test: contrato `EXTERNAL_CONTRACT` aceito, contrato inválido rejeitado e serialização determinística confirmada.
 - `dotnet restore ClrLens.sln` executado com sucesso.
