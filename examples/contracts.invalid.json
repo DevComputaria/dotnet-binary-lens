@@ -1,0 +1,12 @@
+[
+  {
+    "symbol": "payloadBytes",
+    "max": -1,
+    "unit": "bytes",
+    "source": "",
+    "scope": "DocumentEndpoint.Process",
+    "trust": "external",
+    "expires": "2025-01-01",
+    "evidence": "proven"
+  }
+]

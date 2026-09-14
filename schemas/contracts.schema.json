@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://clrlens.dev/schemas/contracts.schema.json",
+  "title": "CLR Lens bound contracts",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["symbol", "max", "unit", "source", "scope", "trust", "evidence"],
+    "additionalProperties": false,
+    "properties": {
+      "symbol": { "type": "string", "minLength": 1 },
+      "max": { "type": "number", "minimum": 0 },
+      "unit": { "type": "string", "minLength": 1 },
+      "source": { "type": "string", "minLength": 1 },
+      "scope": { "type": "string", "minLength": 1 },
+      "trust": { "enum": ["code", "librarySummary", "external", "runtime"] },
+      "expires": { "type": ["string", "null"], "format": "date" },
+      "owner": { "type": ["string", "null"] },
+      "ticket": { "type": ["string", "null"] },
+      "evidence": { "const": "externalContract" }
+    }
+  }
+}

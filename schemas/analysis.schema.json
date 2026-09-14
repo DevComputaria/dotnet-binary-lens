@@ -1,0 +1,126 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://clrlens.dev/schemas/analysis.schema.json",
+  "title": "CLR Lens analysis report",
+  "type": "object",
+  "required": ["schemaVersion", "assembly", "provenance", "configuration", "summary", "findings", "contracts", "suppressions"],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": { "type": "string", "minLength": 1 },
+    "assembly": { "$ref": "#/$defs/assembly" },
+    "provenance": { "$ref": "#/$defs/provenance" },
+    "configuration": { "$ref": "#/$defs/configuration" },
+    "summary": { "$ref": "#/$defs/summary" },
+    "findings": { "type": "array", "items": { "$ref": "#/$defs/finding" } },
+    "contracts": { "type": "array", "items": { "$ref": "#/$defs/contract" } },
+    "suppressions": { "type": "array", "items": { "$ref": "#/$defs/suppression" } }
+  },
+  "$defs": {
+    "assembly": {
+      "type": "object",
+      "required": ["name", "sha256", "targetFramework", "architecture", "hasPdb", "isStrongNamed", "isReadyToRun"],
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "sha256": { "type": "string", "pattern": "^[A-Fa-f0-9]{64}$" },
+        "targetFramework": { "type": "string", "minLength": 1 },
+        "architecture": { "type": "string", "minLength": 1 },
+        "version": { "type": ["string", "null"] },
+        "hasPdb": { "type": "boolean" },
+        "isStrongNamed": { "type": "boolean" },
+        "isReadyToRun": { "type": "boolean" }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "required": ["toolVersion", "runtimeModel", "analysisDate", "inputSha256"],
+      "additionalProperties": false,
+      "properties": {
+        "toolVersion": { "type": "string", "minLength": 1 },
+        "runtimeModel": { "type": "string", "minLength": 1 },
+        "analysisDate": { "type": "string", "format": "date-time" },
+        "inputSha256": { "type": "string", "pattern": "^[A-Fa-f0-9]{64}$" },
+        "sourceDocument": { "type": ["string", "null"] }
+      }
+    },
+    "configuration": {
+      "type": "object",
+      "required": ["scenario", "costMode", "lohThresholdBytes"],
+      "additionalProperties": false,
+      "properties": {
+        "scenario": { "enum": ["baseline", "stress", "untrusted"] },
+        "costMode": { "enum": ["typical", "pessimistic", "observed"] },
+        "expectedConcurrency": { "type": ["integer", "null"], "minimum": 0 },
+        "containerMemoryBytes": { "type": ["integer", "null"], "minimum": 0 },
+        "lohThresholdBytes": { "type": "integer", "minimum": 85000 }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "required": ["methods", "instructions", "loops", "allocationSites", "cpuRisk", "memoryRisk", "findingCount"],
+      "additionalProperties": false,
+      "properties": {
+        "methods": { "type": "integer", "minimum": 0 },
+        "instructions": { "type": "integer", "minimum": 0 },
+        "loops": { "type": "integer", "minimum": 0 },
+        "allocationSites": { "type": "integer", "minimum": 0 },
+        "cpuRisk": { "type": "number", "minimum": 0, "maximum": 100 },
+        "memoryRisk": { "type": "number", "minimum": 0, "maximum": 100 },
+        "findingCount": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "finding": {
+      "type": "object",
+      "required": ["id", "category", "severity", "confidence", "location", "evidence", "remediation", "title", "description", "whyThisMatters", "assumptions", "recommendations", "suppressed"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "category": { "type": "string", "minLength": 1 },
+        "severity": { "enum": ["info", "low", "medium", "high", "critical"] },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "location": { "type": "object" },
+        "evidence": { "type": "string" },
+        "remediation": { "type": "string" },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "whyThisMatters": { "type": "string" },
+        "model": { "type": ["object", "null"] },
+        "assumptions": { "type": "array" },
+        "recommendations": { "type": "array", "items": { "type": "string" } },
+        "suppressed": { "type": "boolean" },
+        "suppressionId": { "type": ["string", "null"] }
+      }
+    },
+    "contract": {
+      "type": "object",
+      "required": ["symbol", "max", "unit", "source", "scope", "trust", "evidence"],
+      "additionalProperties": false,
+      "properties": {
+        "symbol": { "type": "string", "minLength": 1 },
+        "max": { "type": "number", "minimum": 0 },
+        "unit": { "type": "string", "minLength": 1 },
+        "source": { "type": "string", "minLength": 1 },
+        "scope": { "type": "string", "minLength": 1 },
+        "trust": { "enum": ["code", "librarySummary", "external", "runtime"] },
+        "expires": { "type": ["string", "null"], "format": "date" },
+        "owner": { "type": ["string", "null"] },
+        "ticket": { "type": ["string", "null"] },
+        "evidence": { "const": "externalContract" }
+      }
+    },
+    "suppression": {
+      "type": "object",
+      "required": ["id", "target", "reason", "owner", "scope", "expires"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "target": { "type": "string", "minLength": 1 },
+        "reason": { "type": "string", "minLength": 1 },
+        "owner": { "type": "string", "minLength": 1 },
+        "scope": { "type": "string", "minLength": 1 },
+        "expires": { "type": "string", "format": "date" },
+        "ticket": { "type": ["string", "null"] }
+      }
+    }
+  }
+}

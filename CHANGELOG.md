@@ -8,6 +8,9 @@ O formato segue as convenções do [Keep a Changelog](https://keepachangelog.com
 
 ### Added
 
+- Contratos imutáveis de domínio, serializer determinístico e validador de invariantes para reports.
+- Schemas versionados para analysis reports, bound contracts e suppressions.
+- Exemplos de contrato válido e inválido para validação.
 - Plano de desenvolvimento em `docs/plan/development-plan.md`.
 - PRD completo em `docs/prd/prd.md`.
 - Índice e tarefas individuais em `docs/tasks/`.
@@ -26,6 +29,7 @@ O formato segue as convenções do [Keep a Changelog](https://keepachangelog.com
 
 ### Verified
 
+- T02 smoke test: contrato `EXTERNAL_CONTRACT` aceito, contrato inválido rejeitado e serialização determinística confirmada.
 - `dotnet restore ClrLens.sln` executado com sucesso.
 - `dotnet build ClrLens.sln --no-restore` executado com sucesso.
 - 18 projetos compilados.

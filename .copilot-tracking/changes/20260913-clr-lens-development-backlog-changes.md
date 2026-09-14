@@ -31,6 +31,16 @@
 - `dotnet test ClrLens.sln --no-build --no-restore`: sem testes executáveis nesta fase; runner será introduzido na T03.
 - Decisão: projetos de teste permanecem compiláveis, sem `IsTestProject`, até a criação das fixtures e escolha do framework de testes.
 
+### 2026-09-13 — T02 concluída
+
+- Criados contratos imutáveis para assembly, provenance, localização IL, assumptions, findings, cenários, bound contracts e suppressions.
+- Adicionado `AnalysisReportSerializer` com enumeração em string, camelCase e saída determinística.
+- Adicionado `DomainContractValidator` para hash SHA-256, campos obrigatórios, bounds, expiração e `EXTERNAL_CONTRACT`.
+- Criados schemas versionados em `schemas/` e exemplos válidos/inválidos em `examples/`.
+- `dotnet build ClrLens.sln --no-restore`: PASS, 0 warnings, 0 errors.
+- Smoke test temporário: PASS para contrato válido, rejeição de contrato inválido e serialização determinística.
+- Observação: o runner de testes permanente permanece planejado para T03.
+
 ## Próxima ação
 
 Executar Task 1.1: criar a solução .NET e os limites dos projetos `ClrLens.*`, após selecionar e registrar o SDK/TFM alvo.

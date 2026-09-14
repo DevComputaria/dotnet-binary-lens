@@ -1,7 +1,7 @@
 # T02 — Definir contratos de domínio
 
 **Fase:** 1 — Fundação  
-**Status:** Não iniciado  
+**Status:** Concluída  
 **Prioridade:** Crítica
 
 ## Objetivo
@@ -18,3 +18,11 @@ T01.
 - `EXTERNAL_CONTRACT` é suportado.
 - Serialização é determinística.
 - O contrato registra hash do assembly e versão da ferramenta.
+
+## Resultado da implementação
+
+- Criados contratos imutáveis em `src/ClrLens.Core/Domain/AnalysisContracts.cs`.
+- Criados `AnalysisReportSerializer` e `DomainContractValidator`.
+- Criados schemas em `schemas/analysis.schema.json`, `schemas/contracts.schema.json` e `schemas/suppressions.schema.json`.
+- Criados exemplos em `examples/contracts.valid.json` e `examples/contracts.invalid.json`.
+- Validação smoke confirmou `EXTERNAL_CONTRACT`, rejeição de contrato inválido e serialização determinística.

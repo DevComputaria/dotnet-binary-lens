@@ -1,0 +1,14 @@
+[
+  {
+    "symbol": "payloadBytes",
+    "max": 2097152,
+    "unit": "bytes",
+    "source": "api-gateway-policy",
+    "scope": "DocumentEndpoint.Process",
+    "trust": "external",
+    "expires": "2027-01-01",
+    "owner": "platform-team",
+    "ticket": "REL-1842",
+    "evidence": "externalContract"
+  }
+]

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://clrlens.dev/schemas/suppressions.schema.json",
+  "title": "CLR Lens suppressions",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["id", "target", "reason", "owner", "scope", "expires"],
+    "additionalProperties": false,
+    "properties": {
+      "id": { "type": "string", "minLength": 1 },
+      "target": { "type": "string", "minLength": 1 },
+      "reason": { "type": "string", "minLength": 1 },
+      "owner": { "type": "string", "minLength": 1 },
+      "scope": { "type": "string", "minLength": 1 },
+      "expires": { "type": "string", "format": "date" },
+      "ticket": { "type": ["string", "null"] }
+    }
+  }
+}
