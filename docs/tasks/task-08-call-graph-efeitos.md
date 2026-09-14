@@ -1,7 +1,7 @@
 # T08 — Construir call graph e efeitos
 
 **Fase:** 3 — CFG e findings  
-**Status:** Não iniciado  
+**Status:** Concluída  
 **Prioridade:** Alta
 
 ## Objetivo
@@ -17,3 +17,12 @@ T06 e T07.
 - Call graph possui localização dos call sites.
 - Chamadas externas não desaparecem.
 - Efeitos incluem alocação, throw, memória, retenção e bloqueio.
+
+## Resultado da implementação
+
+- Criados `CallSite`, `CallGraph`, `CallResolutionKind` e `UnknownEffect`.
+- Criado `CallGraphBuilder` em `src/ClrLens.Analysis/CallGraph.cs`.
+- Resolvidos tokens para definições internas, member references externas e method specifications.
+- Preservados caller, offset IL, opcode, token, nome do alvo, resolução e efeitos conservadores.
+- Calculados edges internos e SCCs do call graph.
+- Harness validou call sites, chamadas externas, efeitos desconhecidos e cobertura de métodos.

@@ -8,6 +8,7 @@ O formato segue as convenções do [Keep a Changelog](https://keepachangelog.com
 
 ### Added
 
+- Call graph com call sites, resolução de métodos internos/externos, SCCs e `UnknownEffect`.
 - CFG e análises de loops em `ClrLens.Analysis`, com fluxo normal/excepcional, dominadores, SCCs, backedges e loops naturais.
 - IR tipada com `ValueId`, nodes, flags de efeitos, provenance, locals SSA-like e regiões EH.
 - Modelos e decoder CIL em `ClrLens.IL` com operandos, branches, stack diagnostics e EH regions.
@@ -39,6 +40,7 @@ O formato segue as convenções do [Keep a Changelog](https://keepachangelog.com
 
 ### Verified
 
+- T08 call graph harness: PASS, call sites, chamadas externas e efeitos conservadores validados.
 - T07 CFG harness: PASS, 18 CFGs, 3 loops naturais e 3 arestas excepcionais.
 - T06 IR harness: PASS, 163 nodes, 64 SSA-like values e 6 allocation nodes.
 - T05 decoder harness: PASS, corpos CIL decodificados sem executar métodos, branches validados e EH preservado.
@@ -53,6 +55,7 @@ O formato segue as convenções do [Keep a Changelog](https://keepachangelog.com
 
 ### Pending
 
+- Criar testes unitários xUnit para T01–T08 conforme `docs/tasks/task-03b-testes-unitarios-xunit.md`.
 - Implementar T02: contratos de domínio, evidência e schemas.
 - Implementar T03: fixtures e harness de testes.
 - Selecionar o framework de testes e dependências de produção.

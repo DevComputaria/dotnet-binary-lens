@@ -89,6 +89,15 @@
 - `dotnet build ClrLens.sln --no-restore`: PASS, 0 warnings, 0 errors.
 - Harness: PASS — 18 CFGs, 3 loops naturais e 3 arestas excepcionais.
 
+### 2026-09-13 — T08 concluída
+
+- Criados `CallSite`, `CallGraph`, `CallResolutionKind` e `UnknownEffect`.
+- Criado `CallGraphBuilder` com resolução de MethodDefinition, MemberReference e MethodSpecification.
+- Preservados offsets IL, tokens, callers, nomes de alvo e efeitos conservadores de chamadas externas.
+- Calculados edges internos e SCCs do call graph.
+- `dotnet build ClrLens.sln --no-restore`: PASS, 0 warnings, 0 errors.
+- Harness: PASS — call sites, chamadas externas, efeitos desconhecidos e nós de métodos validados.
+
 ## Próxima ação
 
 Executar Task 1.1: criar a solução .NET e os limites dos projetos `ClrLens.*`, após selecionar e registrar o SDK/TFM alvo.
