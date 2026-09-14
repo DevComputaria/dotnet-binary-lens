@@ -61,6 +61,15 @@
 - `dotnet build ClrLens.sln --no-restore`: PASS, 0 warnings, 0 errors.
 - Harness: PASS — `ClrLens.SampleFixtures`, 6 tipos, 18 métodos, sem execução de métodos da fixture.
 
+### 2026-09-13 — T05 concluída
+
+- Criados modelos CIL e diagnósticos em `src/ClrLens.IL/CilModel.cs`.
+- Criado `CilDecoder` para opcodes, operandos, branches, switch, tokens, variáveis e EH.
+- Implementada validação de branch targets e stack height/underflow conservadora.
+- Harness da fixture passou a decodificar corpos CIL e verificar regiões de exceção.
+- `dotnet build ClrLens.sln --no-restore`: PASS, 0 warnings, 0 errors.
+- Harness: PASS — corpos CIL decodificados, nenhum branch inválido e regiões EH preservadas.
+
 ## Próxima ação
 
 Executar Task 1.1: criar a solução .NET e os limites dos projetos `ClrLens.*`, após selecionar e registrar o SDK/TFM alvo.

@@ -8,6 +8,7 @@ O formato segue as convenções do [Keep a Changelog](https://keepachangelog.com
 
 ### Added
 
+- Modelos e decoder CIL em `ClrLens.IL` com operandos, branches, stack diagnostics e EH regions.
 - `AssemblyReader` e `AssemblyModel` para ingestão segura de PE/metadata.
 - Diagnósticos estruturados para input ausente, inválido, grande, sem metadata, timeout e falhas de leitura.
 - Detecção de hash SHA-256, TFM, arquitetura, referências, PDB, strong name e ReadyToRun.
@@ -36,6 +37,7 @@ O formato segue as convenções do [Keep a Changelog](https://keepachangelog.com
 
 ### Verified
 
+- T05 decoder harness: PASS, corpos CIL decodificados sem executar métodos, branches validados e EH preservado.
 - T04 ingestion harness: PASS, DLL válida analisada sem executar métodos; input inválido e ausente produziram diagnósticos estruturados.
 - T03 fixture harness: PASS, 6 tipos, 18 métodos e SHA-256 validado sem executar métodos da fixture.
 - T02 smoke test: contrato `EXTERNAL_CONTRACT` aceito, contrato inválido rejeitado e serialização determinística confirmada.
