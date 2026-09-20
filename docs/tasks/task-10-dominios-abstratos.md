@@ -1,7 +1,7 @@
 # T10 — Implementar domínios abstratos
 
 **Fase:** 4 — Análise matemática  
-**Status:** Não iniciado  
+**Status:** Concluída  
 **Prioridade:** Alta
 
 ## Objetivo
@@ -18,3 +18,13 @@ T06–T09.
 - Loops convergem ou reportam limite.
 - Perda de precisão é registrada.
 - Fixed-width metadata não é perdida.
+
+## Resultado da implementação
+
+- Criados domínios `Interval`, `Congruence`, `NullabilityState`, `Cardinality`, `AllocationState`, `EscapeState`, `AliasState` e `ConcurrencyState`.
+- Criado produto reduzido `AbstractValue` com `LessOrEqual`, `Join` e `Widen`.
+- Criado `AbstractState` com values por `ValueId`, notas de perda de precisão, `Join`, `Widen`, `Narrow` e clone.
+- Criado `FixpointEngine` com limite de iterações, widening configurável, resultado de convergência e diagnósticos.
+- Implementada aritmética de intervalos com saturação para overflow de `long`.
+- Fixed-width, signedness e tipo são preservados no `AbstractValue` quando compatíveis.
+- Testes xUnit cobrem monotonicidade, widening, congruência, largura fixa, perda de precisão e convergência.

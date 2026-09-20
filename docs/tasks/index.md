@@ -14,7 +14,7 @@
 | 1. Fundação | T01–T03B | ✅ Concluída |
 | 2. PE, CIL e IR | T04–T06 | ✅ Concluída |
 | 3. CFG e findings | T07–T09 | ✅ Concluída |
-| 4. Análise matemática | T10–T12 | ⬜ Não iniciada |
+| 4. Análise matemática | T10–T12 | 🔵 Em andamento — T10 concluída |
 | 5. Pessimismo e relatórios | T13–T15 | ⬜ Não iniciada |
 | 6. Reescrita e validação | T16–T18 | ⬜ Não iniciada |
 | 7. Runtime e release | T19–T20 | ⬜ Não iniciada |
@@ -31,7 +31,7 @@
 - [T07 — CFG e loops](task-07-cfg-loops.md) ✅
 - [T08 — Call graph e efeitos](task-08-call-graph-efeitos.md) ✅
 - [T09 — Findings estruturais](task-09-findings-estruturais.md) ✅
-- [T10 — Domínios abstratos](task-10-dominios-abstratos.md)
+- [T10 — Domínios abstratos](task-10-dominios-abstratos.md) ✅
 - [T11 — Scalar Evolution](task-11-scalar-evolution.md)
 - [T12 — Memória e summaries](task-12-memoria-summaries.md)
 - [T13 — Modo pessimista](task-13-modo-pessimista.md)

@@ -117,6 +117,16 @@
 - Harness de integração: PASS.
 - Trip counts e bounds precisos permanecem dependentes das tarefas matemáticas T10/T11.
 
+### 2026-09-20 — T10 concluída
+
+- Criados domínios abstratos em `src/ClrLens.Analysis/AbstractDomains.cs`.
+- Criados `AbstractState` e `FixpointEngine` com join, widening, narrowing, limites de convergência e notas de perda de precisão.
+- Preservados tipo, bit width e signedness quando compatíveis durante joins.
+- Implementada aritmética de intervalos com saturação de overflow.
+- `dotnet test ClrLens.sln --no-restore`: PASS — 18 unitários e 3 regressão.
+- Harness de integração: PASS.
+- Scalar Evolution e transferências metadata-aware permanecem para T11/T12.
+
 ## Próxima ação
 
 Executar Task 1.1: criar a solução .NET e os limites dos projetos `ClrLens.*`, após selecionar e registrar o SDK/TFM alvo.

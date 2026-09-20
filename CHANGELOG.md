@@ -8,6 +8,8 @@ O formato segue as convenções do [Keep a Changelog](https://keepachangelog.com
 
 ### Added
 
+- Domínios abstratos de intervalos, congruência, nullability, cardinalidade, allocation, escape, alias e concorrência.
+- `AbstractState` e `FixpointEngine` com join, widening, narrowing, limites e diagnósticos de precisão.
 - Findings estruturais `CPU001`, `CPU004`, `CPU005` e `MEM001`.
 - Serializer SARIF 2.1.0 para findings.
 - Suíte xUnit para contratos, ingestão PE, decoder CIL, IR, CFG, loops e call graph.
@@ -44,6 +46,7 @@ O formato segue as convenções do [Keep a Changelog](https://keepachangelog.com
 
 ### Verified
 
+- T10: 18 testes unitários e 3 de regressão passaram; harness de integração continuou verde.
 - T09: 14 testes unitários e 3 de regressão passaram; harness de integração continuou verde.
 - T03B: 15 testes xUnit passaram, 0 falharam; harness de integração também passou.
 - Cobertura T03B: 72,66% de linhas nos unitários e 25,10% nos testes de regressão; meta recomendada de 80% permanece pendente.
