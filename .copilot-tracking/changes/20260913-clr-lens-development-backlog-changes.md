@@ -98,6 +98,15 @@
 - `dotnet build ClrLens.sln --no-restore`: PASS, 0 warnings, 0 errors.
 - Harness: PASS — call sites, chamadas externas, efeitos desconhecidos e nós de métodos validados.
 
+### 2026-09-20 — T03B concluída
+
+- Configurados xUnit, Microsoft.NET.Test.Sdk, runner Visual Studio e Coverlet.
+- Adicionados testes unitários para contratos, ingestão PE, decoder CIL, IR, CFG, loops e call graph.
+- Adicionados testes de regressão para fixture válida, fixture inválida e branches.
+- `dotnet test ClrLens.sln --no-restore`: PASS — 12 unitários e 3 regressão, 0 falhas.
+- Harness de integração: PASS — 18 CFGs, 3 loops, 3 arestas excepcionais, 15 call sites e 13 chamadas externas.
+- Cobertura Cobertura XML: unitários 72,66% de linhas; regressão 25,10% de linhas. Meta recomendada de 80% permanece como backlog de qualidade.
+
 ## Próxima ação
 
 Executar Task 1.1: criar a solução .NET e os limites dos projetos `ClrLens.*`, após selecionar e registrar o SDK/TFM alvo.

@@ -3,6 +3,7 @@
     <OutputType>Exe</OutputType>
     <AssemblyName>ClrLens.Tests.IL</AssemblyName>
     <RootNamespace>ClrLens.Tests.IL</RootNamespace>
+    <NoWarn>$(NoWarn);CS1591;CA1707;CA1305</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="../../src/ClrLens.PE/ClrLens.PE.csproj" />

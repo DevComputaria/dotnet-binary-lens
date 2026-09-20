@@ -1,4 +1,4 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup><AssemblyName>ClrLens.Tests.Benchmarks</AssemblyName><RootNamespace>ClrLens.Tests.Benchmarks</RootNamespace></PropertyGroup>
+  <PropertyGroup><AssemblyName>ClrLens.Tests.Benchmarks</AssemblyName><RootNamespace>ClrLens.Tests.Benchmarks</RootNamespace><NoWarn>$(NoWarn);CS1591;CA1707;CA1305</NoWarn></PropertyGroup>
   <ItemGroup><ProjectReference Include="../../src/ClrLens.Runtime/ClrLens.Runtime.csproj" /></ItemGroup>
 </Project>

@@ -8,6 +8,8 @@ O formato segue as convenções do [Keep a Changelog](https://keepachangelog.com
 
 ### Added
 
+- Suíte xUnit para contratos, ingestão PE, decoder CIL, IR, CFG, loops e call graph.
+- Cobertura Cobertura XML via Coverlet.
 - Call graph com call sites, resolução de métodos internos/externos, SCCs e `UnknownEffect`.
 - CFG e análises de loops em `ClrLens.Analysis`, com fluxo normal/excepcional, dominadores, SCCs, backedges e loops naturais.
 - IR tipada com `ValueId`, nodes, flags de efeitos, provenance, locals SSA-like e regiões EH.
@@ -40,6 +42,8 @@ O formato segue as convenções do [Keep a Changelog](https://keepachangelog.com
 
 ### Verified
 
+- T03B: 15 testes xUnit passaram, 0 falharam; harness de integração também passou.
+- Cobertura T03B: 72,66% de linhas nos unitários e 25,10% nos testes de regressão; meta recomendada de 80% permanece pendente.
 - T08 call graph harness: PASS, call sites, chamadas externas e efeitos conservadores validados.
 - T07 CFG harness: PASS, 18 CFGs, 3 loops naturais e 3 arestas excepcionais.
 - T06 IR harness: PASS, 163 nodes, 64 SSA-like values e 6 allocation nodes.

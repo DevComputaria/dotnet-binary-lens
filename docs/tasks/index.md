@@ -11,7 +11,7 @@
 
 | Fase | Tarefas | Status |
 |---|---|---|
-| 1. Fundação | T01–T03B | 🔵 Em andamento — T01/T02/T03 concluídas |
+| 1. Fundação | T01–T03B | ✅ Concluída |
 | 2. PE, CIL e IR | T04–T06 | ✅ Concluída |
 | 3. CFG e findings | T07–T09 | 🔵 Em andamento — T07/T08 concluídas |
 | 4. Análise matemática | T10–T12 | ⬜ Não iniciada |
@@ -24,7 +24,7 @@
 - [T01 — Solução e módulos](task-01-solucao-modulos.md) ✅
 - [T02 — Contratos de domínio](task-02-contratos-dominio.md) ✅
 - [T03 — Fixtures e testes-base](task-03-fixtures-testes.md) ✅
-- [T03B — Testes unitários com xUnit](task-03b-testes-unitarios-xunit.md) ⬜
+- [T03B — Testes unitários com xUnit](task-03b-testes-unitarios-xunit.md) ✅
 - [T04 — Ingestão PE e metadata](task-04-ingestao-pe-metadata.md) ✅
 - [T05 — Decoder CIL e stack](task-05-decoder-cil-stack.md) ✅
 - [T06 — IR tipada](task-06-ir-tipada.md) ✅

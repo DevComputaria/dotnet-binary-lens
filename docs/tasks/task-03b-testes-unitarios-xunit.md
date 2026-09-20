@@ -1,7 +1,7 @@
 # T03B — Criar testes unitários com xUnit
 
 **Fase:** 1 — Fundação / Qualidade  
-**Status:** Não iniciado  
+**Status:** Concluída  
 **Prioridade:** Crítica  
 **Base:** T01–T08 concluídas
 
@@ -265,3 +265,13 @@ tests/
 ## Resultado esperado
 
 Ao concluir esta tarefa, cada componente implementado até T08 terá uma suíte xUnit correspondente, enquanto o harness continuará validando a integração real entre PEReader, decoder, IR, CFG e call graph.
+
+## Resultado da implementação
+
+- xUnit, `Microsoft.NET.Test.Sdk`, runner Visual Studio e Coverlet configurados nos projetos unitário/regressão.
+- Suíte unitária criada para contratos, IR, CFG, loops, call graph, ingestão PE e decoder CIL.
+- Testes de regressão criados para fixture válida, fixture inválida e branches.
+- Harness `tests/ClrLens.Tests.IL` preservado como teste de integração executável.
+- `dotnet test ClrLens.sln --no-restore`: 15 testes passaram, 0 falharam.
+- Harness de integração: PASS — 18 CFGs, 3 loops, 3 arestas excepcionais, 15 call sites e 13 chamadas externas.
+- Cobertura coletada em Cobertura XML; unitários atingiram 72,66% de linhas e regressão 25,10% de linhas. O alvo recomendado de 80% permanece como melhoria futura.
