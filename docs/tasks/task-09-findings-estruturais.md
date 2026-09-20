@@ -1,7 +1,7 @@
 # T09 — Implementar findings estruturais
 
 **Fase:** 3 — CFG e findings  
-**Status:** Não iniciado  
+**Status:** Concluída  
 **Prioridade:** Alta
 
 ## Objetivo
@@ -18,3 +18,13 @@ T02, T06, T07 e T08.
 - Bounds desconhecidos permanecem `UNKNOWN`.
 - JSON/SARIF são produzidos.
 - Não há auto-fix nesta tarefa.
+
+## Resultado da implementação
+
+- Criado `StructuralFindingsAnalyzer` em `src/ClrLens.Rules/StructuralFindingsAnalyzer.cs`.
+- Implementados findings `CPU001` para nesting excessivo, `MEM001` para alocação em loop, `CPU004` para loops sem progresso reconhecível e `CPU005` para calls em loops.
+- Findings preservam método, token, offsets IL, severidade, confidence, evidence kind, cost model, recomendações e remediation.
+- Nenhuma regra estrutural produz `AUTO_FIX`; remediações são `REVIEW` ou `SOURCE_CHANGE`.
+- Criado `SarifReportSerializer` em `src/ClrLens.Reporting/SarifReportSerializer.cs`.
+- Testes xUnit validam findings acionáveis e documento SARIF.
+- Bounds desconhecidos permanecem simbólicos/inferred; regras dependentes de trip count preciso aguardam T10/T11.

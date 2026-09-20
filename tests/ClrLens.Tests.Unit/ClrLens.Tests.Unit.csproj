@@ -15,6 +15,8 @@
     <ProjectReference Include="../../src/ClrLens.IL/ClrLens.IL.csproj" />
     <ProjectReference Include="../../src/ClrLens.IR/ClrLens.IR.csproj" />
     <ProjectReference Include="../../src/ClrLens.Analysis/ClrLens.Analysis.csproj" />
+    <ProjectReference Include="../../src/ClrLens.Rules/ClrLens.Rules.csproj" />
+    <ProjectReference Include="../../src/ClrLens.Reporting/ClrLens.Reporting.csproj" />
     <ProjectReference Include="../fixtures/ClrLens.SampleFixtures/ClrLens.SampleFixtures.csproj" />
   </ItemGroup>
 </Project>

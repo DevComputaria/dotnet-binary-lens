@@ -107,6 +107,16 @@
 - Harness de integração: PASS — 18 CFGs, 3 loops, 3 arestas excepcionais, 15 call sites e 13 chamadas externas.
 - Cobertura Cobertura XML: unitários 72,66% de linhas; regressão 25,10% de linhas. Meta recomendada de 80% permanece como backlog de qualidade.
 
+### 2026-09-20 — T09 concluída
+
+- Criado `StructuralFindingsAnalyzer` com regras `CPU001`, `MEM001`, `CPU004` e `CPU005`.
+- Findings carregam localização IL, severidade, confidence, evidence, cost model, recomendações e remediation.
+- Nenhuma regra produz auto-fix; remediações permanecem `REVIEW`/`SOURCE_CHANGE`.
+- Criado serializer SARIF 2.1.0.
+- `dotnet test ClrLens.sln --no-restore`: PASS — 14 unitários e 3 regressão.
+- Harness de integração: PASS.
+- Trip counts e bounds precisos permanecem dependentes das tarefas matemáticas T10/T11.
+
 ## Próxima ação
 
 Executar Task 1.1: criar a solução .NET e os limites dos projetos `ClrLens.*`, após selecionar e registrar o SDK/TFM alvo.

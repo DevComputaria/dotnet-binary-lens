@@ -8,6 +8,8 @@ O formato segue as convenções do [Keep a Changelog](https://keepachangelog.com
 
 ### Added
 
+- Findings estruturais `CPU001`, `CPU004`, `CPU005` e `MEM001`.
+- Serializer SARIF 2.1.0 para findings.
 - Suíte xUnit para contratos, ingestão PE, decoder CIL, IR, CFG, loops e call graph.
 - Cobertura Cobertura XML via Coverlet.
 - Call graph com call sites, resolução de métodos internos/externos, SCCs e `UnknownEffect`.
@@ -42,6 +44,7 @@ O formato segue as convenções do [Keep a Changelog](https://keepachangelog.com
 
 ### Verified
 
+- T09: 14 testes unitários e 3 de regressão passaram; harness de integração continuou verde.
 - T03B: 15 testes xUnit passaram, 0 falharam; harness de integração também passou.
 - Cobertura T03B: 72,66% de linhas nos unitários e 25,10% nos testes de regressão; meta recomendada de 80% permanece pendente.
 - T08 call graph harness: PASS, call sites, chamadas externas e efeitos conservadores validados.
@@ -59,11 +62,9 @@ O formato segue as convenções do [Keep a Changelog](https://keepachangelog.com
 
 ### Pending
 
-- Criar testes unitários xUnit para T01–T08 conforme `docs/tasks/task-03b-testes-unitarios-xunit.md`.
-- Implementar T02: contratos de domínio, evidência e schemas.
-- Implementar T03: fixtures e harness de testes.
+- Aumentar cobertura da suíte T03B para a meta recomendada de 80%.
 - Selecionar o framework de testes e dependências de produção.
-- Implementar o decoder CIL e a IR.
+- Implementar T10: domínios abstratos e fixpoint engine.
 
 ## Convenções
 
