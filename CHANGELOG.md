@@ -8,6 +8,7 @@ O formato segue as convenções do [Keep a Changelog](https://keepachangelog.com
 
 ### Added
 
+- Memory summary model e heap abstrato para separar allocation volume, live memory, retained memory e LOH.
 - Scalar Evolution para recorrências lineares e stepped com cálculo simbólico de trip count e terminação.
 - Domínios abstratos de intervalos, congruência, nullability, cardinalidade, allocation, escape, alias e concorrência.
 - `AbstractState` e `FixpointEngine` com join, widening, narrowing, limites e diagnósticos de precisão.
@@ -47,6 +48,7 @@ O formato segue as convenções do [Keep a Changelog](https://keepachangelog.com
 
 ### Verified
 
+- T12: 3 testes unitários de memória/LOH/static cache passaram; o modelo expõe versionamento e threshold configurável.
 - T11: 20 testes unitários e 3 de regressão passaram; harness de integração continuou verde.
 - T10: 18 testes unitários e 3 de regressão passaram; harness de integração continuou verde.
 - T09: 14 testes unitários e 3 de regressão passaram; harness de integração continuou verde.

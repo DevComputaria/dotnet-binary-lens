@@ -1,7 +1,7 @@
 # T12 — Implementar memória e summaries
 
 **Fase:** 4 — Análise matemática  
-**Status:** Não iniciado  
+**Status:** Concluída  
 **Prioridade:** Crítica
 
 ## Objetivo
@@ -18,3 +18,11 @@ T08–T11.
 - Static cache mostra caminho GC root.
 - LOH threshold é configurável.
 - Summary usado e versão aparecem no finding.
+
+## Resultado da implementação
+
+- Criados `AbstractHeap`, `AbstractHeapObject` e `MemorySummary` em `src/ClrLens.Analysis/AbstractDomains.cs`.
+- Implementado `MemorySummaryAnalyzer` para separar `AllocationVolume`, `LiveManagedMemory`, `RetainedMemory`, `PeakWorkingSetEstimate` e `LargeObjectHeapBytes`.
+- O caminho de GC root do static cache é preservado em `StaticCacheRootPaths` e no summary.
+- O threshold de LOH é configurável e a versão do summary está exposta no `CostModel` (`summaryVersion`, `summaryId`, `lohThresholdBytes`).
+- Testes xUnit cobrem alocação separada, retention por static root e threshold LOH configurável.

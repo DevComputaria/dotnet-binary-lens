@@ -1,3 +1,6 @@
+using System.Globalization;
+using ClrLens.Core.Domain;
+
 namespace ClrLens.Analysis;
 
 public readonly record struct Interval
@@ -196,4 +199,99 @@ public readonly record struct AbstractValue(
     private static AliasState JoinAlias(AliasState left, AliasState right) => left == right ? left : AliasState.Unknown;
     private static bool ConcurrencyLessOrEqual(ConcurrencyState current, ConcurrencyState other) => current == other || other == ConcurrencyState.Unknown;
     private static ConcurrencyState JoinConcurrency(ConcurrencyState left, ConcurrencyState right) => left == right ? left : ConcurrencyState.Unknown;
+}
+
+public sealed record AbstractHeapObject(
+    string Id,
+    long SizeBytes,
+    EscapeState Escape,
+    string RootPath,
+    bool IsStaticCache = false);
+
+public sealed class AbstractHeap
+{
+    private readonly List<AbstractHeapObject> objects;
+
+    public AbstractHeap(IEnumerable<AbstractHeapObject>? objects = null)
+    {
+        this.objects = objects?.ToList() ?? [];
+    }
+
+    public IReadOnlyList<AbstractHeapObject> Objects => objects;
+    public int Count => objects.Count;
+
+    public void Add(AbstractHeapObject obj) => objects.Add(obj);
+    public IEnumerator<AbstractHeapObject> GetEnumerator() => objects.GetEnumerator();
+}
+
+public sealed record MemorySummary(
+    string Version,
+    long AllocationVolumeBytes,
+    long LiveManagedBytes,
+    long RetainedBytes,
+    long PeakWorkingSetEstimateBytes,
+    long NativeMemoryBytes,
+    long LargeObjectHeapBytes,
+    IReadOnlyList<string> StaticCacheRootPaths,
+    long LohThresholdBytes,
+    int ConcurrencyFactor,
+    string SummaryId)
+{
+    public bool IsLargeObjectHeap => LargeObjectHeapBytes > LohThresholdBytes;
+
+    public CostModel ToCostModel() => new(
+        "AllocationVolume + RetainedMemory + (ConcurrencyFactor × PeakWorkingSetEstimate)",
+        "O(N × P)",
+        "bytes",
+        new Dictionary<string, string>
+        {
+            ["summaryVersion"] = Version,
+            ["summaryId"] = SummaryId,
+            ["lohThresholdBytes"] = LohThresholdBytes.ToString(CultureInfo.InvariantCulture),
+            ["largeObjectHeapBytes"] = LargeObjectHeapBytes.ToString(CultureInfo.InvariantCulture),
+            ["staticCacheRoots"] = StaticCacheRootPaths.Count.ToString(CultureInfo.InvariantCulture),
+            ["concurrencyFactor"] = ConcurrencyFactor.ToString(CultureInfo.InvariantCulture)
+        });
+}
+
+public static class MemorySummaryAnalyzer
+{
+    public static MemorySummary Analyze(AbstractHeap heap, long lohThresholdBytes = 85_000, int concurrencyFactor = 1)
+    {
+        ArgumentNullException.ThrowIfNull(heap);
+        ArgumentOutOfRangeException.ThrowIfNegativeOrZero(lohThresholdBytes);
+        ArgumentOutOfRangeException.ThrowIfNegative(concurrencyFactor);
+
+        var objects = heap.Objects;
+        var staticRoots = objects
+            .Where(obj => obj.IsStaticCache || obj.RootPath.Contains("StaticCache", StringComparison.OrdinalIgnoreCase))
+            .Select(obj => obj.RootPath)
+            .Distinct(StringComparer.Ordinal)
+            .ToArray();
+
+        var allocationVolume = objects.Sum(obj => obj.SizeBytes);
+        var liveManaged = objects
+            .Where(obj => obj.Escape is not EscapeState.GlobalEscape and not EscapeState.Unknown)
+            .Sum(obj => obj.SizeBytes);
+        var retained = objects
+            .Where(obj => obj.Escape == EscapeState.GlobalEscape || obj.IsStaticCache || staticRoots.Contains(obj.RootPath, StringComparer.Ordinal))
+            .Sum(obj => obj.SizeBytes);
+        var largeObjectHeapBytes = objects.Where(obj => obj.SizeBytes > lohThresholdBytes).Sum(obj => obj.SizeBytes);
+        var peakWorkingSetEstimate = Math.Max(
+            allocationVolume,
+            Math.Max(liveManaged + retained, liveManaged + retained + Math.Max(0, concurrencyFactor - 1) * 1024L));
+
+        return new MemorySummary(
+            Version: "v1",
+            AllocationVolumeBytes: allocationVolume,
+            LiveManagedBytes: liveManaged,
+            RetainedBytes: retained,
+            PeakWorkingSetEstimateBytes: peakWorkingSetEstimate,
+            NativeMemoryBytes: 0,
+            LargeObjectHeapBytes: largeObjectHeapBytes,
+            StaticCacheRootPaths: staticRoots,
+            LohThresholdBytes: lohThresholdBytes,
+            ConcurrencyFactor: concurrencyFactor,
+            SummaryId: "mem:v1");
+    }
 }

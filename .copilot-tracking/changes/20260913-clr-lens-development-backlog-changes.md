@@ -3,8 +3,8 @@
 ## Status
 
 - **Backlog:** criado
-- **Implementação:** em andamento — Fase 1 a 4 concluídas; T11 concluída
-- **Fase atual:** Fase 4 — Análise matemática (T10/T11 concluídas; T12 em andamento)
+- **Implementação:** em andamento — Fase 1 a 4 concluídas; T10, T11 e T12 concluídas
+- **Fase atual:** Fase 4 — Análise matemática concluída; segue para T13 — Modo pessimista
 - **Fonte de requisitos:** `docs/prd/prd.md`
 - **Checklist:** `.copilot-tracking/plans/20260913-clr-lens-development-backlog-plan.instructions.md`
 - **Detalhes:** `.copilot-tracking/details/20260913-clr-lens-development-backlog-details.md`
@@ -137,9 +137,18 @@
 - `dotnet test ClrLens.sln --no-restore`: PASS — 20 unitários e 3 regressão, 0 falhas.
 - Harness de integração: PASS.
 
+### 2026-09-20 — T12 concluída
+
+- Implementado `AbstractHeap`, `AbstractHeapObject` e `MemorySummary` em `src/ClrLens.Analysis/AbstractDomains.cs`.
+- Criado `MemorySummaryAnalyzer` para separar `AllocationVolume`, `LiveManagedMemory`, `RetainedMemory`, `PeakWorkingSetEstimate` e `LargeObjectHeapBytes`.
+- O caminho de GC root do static cache é preservado em `StaticCacheRootPaths` e acompanhado no summary.
+- O threshold de LOH é configurável e a versão do summary é exposta no `CostModel` (`summaryVersion`, `summaryId`, `lohThresholdBytes`).
+- Validado em testes xUnit para separação de alocação, retention por static root e threshold de LOH.
+- `dotnet test tests/ClrLens.Tests.Unit/ClrLens.Tests.Unit.csproj --filter MemorySummaryTests --no-restore`: PASS — 3 testes, 0 falhas.
+
 ## Próxima ação
 
-Executar a continuidade da fase 4: T12 — Memória e summaries, mantendo o estado matemático e os contratos de findings em sincronização com as análises.
+Iniciar T13 — Modo pessimista, mantendo a fase 4 como base estável para os contratos de findings, suppressions e relatórios.
 
 ## Decisões pendentes
 
