@@ -3,8 +3,8 @@
 ## Status
 
 - **Backlog:** criado
-- **Implementação:** em andamento — Fase 1 a 4 concluídas; T10, T11 e T12 concluídas
-- **Fase atual:** Fase 4 — Análise matemática concluída; segue para T13 — Modo pessimista
+- **Implementação:** em andamento — Fase 1 a 5 concluídas; T10, T11, T12 e T13 concluídas
+- **Fase atual:** Fase 5 — Pessimismo e relatórios concluída; segue para T14 — Contratos e supressões
 - **Fonte de requisitos:** `docs/prd/prd.md`
 - **Checklist:** `.copilot-tracking/plans/20260913-clr-lens-development-backlog-plan.instructions.md`
 - **Detalhes:** `.copilot-tracking/details/20260913-clr-lens-development-backlog-details.md`
@@ -146,9 +146,18 @@
 - Validado em testes xUnit para separação de alocação, retention por static root e threshold de LOH.
 - `dotnet test tests/ClrLens.Tests.Unit/ClrLens.Tests.Unit.csproj --filter MemorySummaryTests --no-restore`: PASS — 3 testes, 0 falhas.
 
+### 2026-09-20 — T13 concluída
+
+- Implementados `InputBoundKind`, `ExternalInputBound`, `MaterializationClassifier` e `PessimisticAnalysis` em `src/ClrLens.Analysis/AbstractDomains.cs`.
+- O bound simbólico `UnknownExternal` permanece explícito no modo pessimista e não é confundido com o nome da variável de entrada.
+- `ReadToEnd`, `ToArray` e `ToList` são reconhecidos como materialização de I/O sem inventar número arbitrário.
+- Cenários `Baseline`, `Stress` e `Untrusted` permanecem independentes com `ExpectedConcurrency` e `ContainerMemoryBytes` separados por cenário.
+- Validado em testes xUnit para payload simbólico, materialização e independência de cenário.
+- `dotnet test tests/ClrLens.Tests.Unit/ClrLens.Tests.Unit.csproj --filter PessimisticModeTests --no-restore`: PASS — 3 testes, 0 falhas.
+
 ## Próxima ação
 
-Iniciar T13 — Modo pessimista, mantendo a fase 4 como base estável para os contratos de findings, suppressions e relatórios.
+Iniciar T14 — Contratos e supressões, mantendo o modo pessimista e o modelo de memória como base para validação de políticas e relatórios.
 
 ## Decisões pendentes
 

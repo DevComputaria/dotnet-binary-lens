@@ -224,6 +224,64 @@ public sealed class AbstractHeap
     public IEnumerator<AbstractHeapObject> GetEnumerator() => objects.GetEnumerator();
 }
 
+public enum InputBoundKind
+{
+    BoundedByCode,
+    BoundedByContract,
+    BoundedByRuntime,
+    UnknownExternal,
+    Unbounded
+}
+
+public sealed record ExternalInputBound(
+    InputBoundKind Kind,
+    string Symbol,
+    string Source,
+    string? Reason = null,
+    AnalysisScenario Scenario = AnalysisScenario.Untrusted,
+    string SymbolicUpperBound = "UnknownExternal")
+{
+    public string Display => SymbolicUpperBound;
+}
+
+public static class MaterializationClassifier
+{
+    private static readonly HashSet<string> MaterializationMethods =
+    [
+        "ReadToEnd",
+        "ReadToEndAsync",
+        "ToArray",
+        "ToList",
+        "CopyTo",
+        "CopyToAsync",
+        "LoadFromStream",
+        "Deserialize",
+        "DeserializeFromStream"
+    ];
+
+    public static bool IsMaterialization(string methodName) =>
+        MaterializationMethods.Contains(methodName, StringComparer.OrdinalIgnoreCase);
+}
+
+public static class PessimisticAnalysis
+{
+    public static ExternalInputBound WorstCaseUpperBound(ExternalInputBound input, AnalysisScenario scenario, AnalysisCostMode mode)
+    {
+        ArgumentNullException.ThrowIfNull(input);
+
+        if (mode == AnalysisCostMode.Observed)
+            return input with { Scenario = scenario, Symbol = input.Symbol, SymbolicUpperBound = input.SymbolicUpperBound };
+
+        if (input.Kind == InputBoundKind.UnknownExternal || input.Kind == InputBoundKind.Unbounded)
+            return input with { Scenario = scenario, Symbol = "UnknownExternal", SymbolicUpperBound = "UnknownExternal" };
+
+        if (string.IsNullOrWhiteSpace(input.SymbolicUpperBound) || input.SymbolicUpperBound == input.Symbol)
+            return input with { Scenario = scenario, Symbol = "UnknownExternal", SymbolicUpperBound = "UnknownExternal" };
+
+        return input with { Scenario = scenario, Symbol = input.Symbol, SymbolicUpperBound = input.SymbolicUpperBound };
+    }
+}
+
 public sealed record MemorySummary(
     string Version,
     long AllocationVolumeBytes,

@@ -8,6 +8,7 @@ O formato segue as convenções do [Keep a Changelog](https://keepachangelog.com
 
 ### Added
 
+- Modo pessimista com `UnknownExternal`, cenários `Baseline`/`Stress`/`Untrusted`, materialização de I/O e upper bound simbólico sem inventar números.
 - Memory summary model e heap abstrato para separar allocation volume, live memory, retained memory e LOH.
 - Scalar Evolution para recorrências lineares e stepped com cálculo simbólico de trip count e terminação.
 - Domínios abstratos de intervalos, congruência, nullability, cardinalidade, allocation, escape, alias e concorrência.
@@ -48,6 +49,7 @@ O formato segue as convenções do [Keep a Changelog](https://keepachangelog.com
 
 ### Verified
 
+- T13: 3 testes unitários do modo pessimista passaram; payloads sem limite continuam simbólicos, materialização é detectada e cenários permanecem independentes.
 - T12: 3 testes unitários de memória/LOH/static cache passaram; o modelo expõe versionamento e threshold configurável.
 - T11: 20 testes unitários e 3 de regressão passaram; harness de integração continuou verde.
 - T10: 18 testes unitários e 3 de regressão passaram; harness de integração continuou verde.

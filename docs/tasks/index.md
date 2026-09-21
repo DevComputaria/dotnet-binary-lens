@@ -15,7 +15,7 @@
 | 2. PE, CIL e IR | T04–T06 | ✅ Concluída |
 | 3. CFG e findings | T07–T09 | ✅ Concluída |
 | 4. Análise matemática | T10–T12 | ✅ Concluída — T10, T11 e T12 concluídas |
-| 5. Pessimismo e relatórios | T13–T15 | ⬜ Não iniciada |
+| 5. Pessimismo e relatórios | T13–T15 | 🔵 Em andamento — T13 concluída |
 | 6. Reescrita e validação | T16–T18 | ⬜ Não iniciada |
 | 7. Runtime e release | T19–T20 | ⬜ Não iniciada |
 
@@ -34,7 +34,7 @@
 - [T10 — Domínios abstratos](task-10-dominios-abstratos.md) ✅
 - [T11 — Scalar Evolution](task-11-scalar-evolution.md) ✅
 - [T12 — Memória e summaries](task-12-memoria-summaries.md) ✅
-- [T13 — Modo pessimista](task-13-modo-pessimista.md)
+- [T13 — Modo pessimista](task-13-modo-pessimista.md) ✅
 - [T14 — Contratos e supressões](task-14-contratos-supressoes.md)
 - [T15 — Relatórios e CLI](task-15-relatorios-cli.md)
 - [T16 — Reescrita IL](task-16-reescrita-il.md)
