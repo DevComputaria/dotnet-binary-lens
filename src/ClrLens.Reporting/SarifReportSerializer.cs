@@ -41,7 +41,12 @@ public static class SarifReportSerializer
                 evidence = finding.Evidence.ToString(),
                 remediation = finding.Remediation.ToString(),
                 confidence = finding.Confidence,
-                formula = finding.Model?.Formula
+                formula = finding.Model?.Formula,
+                suppressed = finding.Suppressed,
+                suppressionId = finding.SuppressionId,
+                suppressionStatus = finding.Suppressed
+                    ? (finding.Evidence == EvidenceKind.ExternalContract || finding.Evidence == EvidenceKind.ProvenUnderAssumptions ? "SUPPRESSED_UNDER_EXTERNAL_CONTRACT" : "SUPPRESSED")
+                    : "ACTIVE"
             }
         }).ToArray();
 

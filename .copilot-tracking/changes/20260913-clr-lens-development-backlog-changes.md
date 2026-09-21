@@ -3,8 +3,8 @@
 ## Status
 
 - **Backlog:** criado
-- **Implementação:** em andamento — Fase 1 a 5 concluídas; T10, T11, T12 e T13 concluídas
-- **Fase atual:** Fase 5 — Pessimismo e relatórios concluída; segue para T14 — Contratos e supressões
+- **Implementação:** em andamento — Fases 1 a 5 em andamento; T10, T11, T12, T13 e T14 concluídas
+- **Fase atual:** Fase 5 — Pessimismo e relatórios; segue para T15 — Relatórios e CLI
 - **Fonte de requisitos:** `docs/prd/prd.md`
 - **Checklist:** `.copilot-tracking/plans/20260913-clr-lens-development-backlog-plan.instructions.md`
 - **Detalhes:** `.copilot-tracking/details/20260913-clr-lens-development-backlog-details.md`
@@ -155,9 +155,18 @@
 - Validado em testes xUnit para payload simbólico, materialização e independência de cenário.
 - `dotnet test tests/ClrLens.Tests.Unit/ClrLens.Tests.Unit.csproj --filter PessimisticModeTests --no-restore`: PASS — 3 testes, 0 falhas.
 
+### 2026-09-20 — T14 concluída
+
+- Implementada a classificação de contratos em `EXTERNAL_CONTRACT` ou `PROVEN_UNDER_ASSUMPTIONS` em `DomainContractValidator`.
+- Implementada a aplicação de supressões com validação de expiração e preservação da evidência original do finding.
+- Supressões de findings `UNKNOWN` permanecem `UNKNOWN`; não há promoção indevida para `PROVEN`.
+- SARIF passou a registrar `suppressed`, `suppressionId` e `suppressionStatus`, incluindo `SUPPRESSED_UNDER_EXTERNAL_CONTRACT`.
+- Adicionados testes unitários para classificação de contratos, supressão conservadora e metadados SARIF.
+- `dotnet test tests/ClrLens.Tests.Unit/ClrLens.Tests.Unit.csproj --no-restore`: PASS — 29 testes, 0 falhas.
+
 ## Próxima ação
 
-Iniciar T14 — Contratos e supressões, mantendo o modo pessimista e o modelo de memória como base para validação de políticas e relatórios.
+Iniciar T15 — Relatórios e CLI, usando os contratos, supressões e metadados SARIF da T14 como base para as policies de CI.
 
 ## Decisões pendentes
 

@@ -4,6 +4,45 @@ namespace ClrLens.Core.Validation;
 
 public static class DomainContractValidator
 {
+    public static EvidenceKind ClassifyContract(BoundContract contract, bool provenLocally)
+    {
+        ArgumentNullException.ThrowIfNull(contract);
+
+        if (contract.Trust == ContractTrust.External)
+            return provenLocally ? EvidenceKind.ProvenUnderAssumptions : EvidenceKind.ExternalContract;
+
+        return provenLocally ? EvidenceKind.ProvenUnderAssumptions : EvidenceKind.StaticUpperBound;
+    }
+
+    public static Finding ApplySuppression(Finding finding, Suppression suppression, DateOnly? today = null)
+    {
+        ArgumentNullException.ThrowIfNull(finding);
+        ArgumentNullException.ThrowIfNull(suppression);
+
+        var currentDate = today ?? DateOnly.FromDateTime(DateTime.UtcNow);
+        if (suppression.Expires < currentDate)
+            throw new ArgumentException($"suppression '{suppression.Id}' is expired.", nameof(suppression));
+
+        if (finding.Evidence == EvidenceKind.Unknown)
+        {
+            return finding with
+            {
+                Suppressed = true,
+                SuppressionId = suppression.Id,
+                Description = $"{finding.Description} Suppressed: {suppression.Reason}",
+                Title = $"{finding.Title} (suppressed)"
+            };
+        }
+
+        return finding with
+        {
+            Suppressed = true,
+            SuppressionId = suppression.Id,
+            Description = $"{finding.Description} Suppressed under external contract: {suppression.Reason}",
+            Title = $"{finding.Title} (suppressed)"
+        };
+    }
+
     public static IReadOnlyList<string> Validate(AnalysisReport report, DateOnly? today = null)
     {
         ArgumentNullException.ThrowIfNull(report);
