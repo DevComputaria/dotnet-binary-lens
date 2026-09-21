@@ -3,8 +3,8 @@
 ## Status
 
 - **Backlog:** criado
-- **Implementação:** não iniciada
-- **Fase atual:** aguardando início da Fase 1 — Repository and solution foundation
+- **Implementação:** em andamento — Fase 1 a 4 concluídas; T11 concluída
+- **Fase atual:** Fase 4 — Análise matemática (T10/T11 concluídas; T12 em andamento)
 - **Fonte de requisitos:** `docs/prd/prd.md`
 - **Checklist:** `.copilot-tracking/plans/20260913-clr-lens-development-backlog-plan.instructions.md`
 - **Detalhes:** `.copilot-tracking/details/20260913-clr-lens-development-backlog-details.md`
@@ -127,9 +127,19 @@
 - Harness de integração: PASS.
 - Scalar Evolution e transferências metadata-aware permanecem para T11/T12.
 
+### 2026-09-20 — T11 concluída
+
+- Implementado `ScalarEvolutionAnalyzer` em `src/ClrLens.Analysis/ScalarEvolution.cs`.
+- Adicionada análise de recorrências lineares e stepped com cálculo simbólico de trip count e terminação.
+- `TerminationState` preserva `ProvenUnderAssumptions` e `Unknown` quando não há evidência formal suficiente.
+- Não há declaração de não-terminação sem prova formal explícita.
+- Validado em testes xUnit e regressão para loops lineares e ausência de prova de non-termination.
+- `dotnet test ClrLens.sln --no-restore`: PASS — 20 unitários e 3 regressão, 0 falhas.
+- Harness de integração: PASS.
+
 ## Próxima ação
 
-Executar Task 1.1: criar a solução .NET e os limites dos projetos `ClrLens.*`, após selecionar e registrar o SDK/TFM alvo.
+Executar a continuidade da fase 4: T12 — Memória e summaries, mantendo o estado matemático e os contratos de findings em sincronização com as análises.
 
 ## Decisões pendentes
 

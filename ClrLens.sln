@@ -1,4 +1,4 @@
-Microsoft Visual Studio Solution File, Format Version 12.00
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
@@ -39,6 +39,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClrLens.Tests.Benchmarks", "tests\ClrLens.Tests.Benchmarks\ClrLens.Tests.Benchmarks.csproj", "{20000000-0000-0000-0000-000000000005}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClrLens.SampleFixtures", "tests\fixtures\ClrLens.SampleFixtures\ClrLens.SampleFixtures.csproj", "{30000000-0000-0000-0000-000000000001}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Debug", "..\..\..\tmp\se-debug\Debug.csproj", "{0046D765-581C-42DA-AB6B-F15A9B5202FE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -122,5 +124,9 @@ Global
 		{30000000-0000-0000-0000-000000000001}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{30000000-0000-0000-0000-000000000001}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{30000000-0000-0000-0000-000000000001}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0046D765-581C-42DA-AB6B-F15A9B5202FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0046D765-581C-42DA-AB6B-F15A9B5202FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0046D765-581C-42DA-AB6B-F15A9B5202FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0046D765-581C-42DA-AB6B-F15A9B5202FE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

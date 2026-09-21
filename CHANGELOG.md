@@ -8,6 +8,7 @@ O formato segue as convenções do [Keep a Changelog](https://keepachangelog.com
 
 ### Added
 
+- Scalar Evolution para recorrências lineares e stepped com cálculo simbólico de trip count e terminação.
 - Domínios abstratos de intervalos, congruência, nullability, cardinalidade, allocation, escape, alias e concorrência.
 - `AbstractState` e `FixpointEngine` com join, widening, narrowing, limites e diagnósticos de precisão.
 - Findings estruturais `CPU001`, `CPU004`, `CPU005` e `MEM001`.
@@ -46,6 +47,7 @@ O formato segue as convenções do [Keep a Changelog](https://keepachangelog.com
 
 ### Verified
 
+- T11: 20 testes unitários e 3 de regressão passaram; harness de integração continuou verde.
 - T10: 18 testes unitários e 3 de regressão passaram; harness de integração continuou verde.
 - T09: 14 testes unitários e 3 de regressão passaram; harness de integração continuou verde.
 - T03B: 15 testes xUnit passaram, 0 falharam; harness de integração também passou.
