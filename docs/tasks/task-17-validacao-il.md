@@ -1,7 +1,8 @@
 # T17 — Integrar ILVerify e validação diferencial
 
 **Fase:** 6 — Reescrita e validação  
-**Status:** Não iniciado  
+**Status:** Concluído
+
 **Prioridade:** Alta
 
 ## Objetivo

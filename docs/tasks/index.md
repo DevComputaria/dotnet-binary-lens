@@ -16,7 +16,7 @@
 | 3. CFG e findings | T07–T09 | ✅ Concluída |
 | 4. Análise matemática | T10–T12 | ✅ Concluída — T10, T11 e T12 concluídas |
 | 5. Pessimismo e relatórios | T13–T15 | ✅ Concluída — T13 e T14 concluídas |
-| 6. Reescrita e validação | T16–T18 | ⬜ Não iniciada |
+| 6. Reescrita e validação | T16–T18 | ✅ Concluída |
 | 7. Runtime e release | T19–T20 | ⬜ Não iniciada |
 
 ## Lista de tarefas

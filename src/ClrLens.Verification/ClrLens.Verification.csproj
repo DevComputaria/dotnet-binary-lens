@@ -1,4 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup><AssemblyName>ClrLens.Verification</AssemblyName><RootNamespace>ClrLens.Verification</RootNamespace></PropertyGroup>
-  <ItemGroup><ProjectReference Include="../ClrLens.Core/ClrLens.Core.csproj" /><ProjectReference Include="../ClrLens.Rewriter/ClrLens.Rewriter.csproj" /></ItemGroup>
+  <PropertyGroup><AssemblyName>ClrLens.Verification</AssemblyName><RootNamespace>ClrLens.Verification</RootNamespace><NoWarn>$(NoWarn);CS1591</NoWarn><UseRidGraph>true</UseRidGraph></PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Z3.x64" Version="4.8.10" GeneratePathProperty="true" />
+    <PackageReference Include="Mono.Cecil" Version="0.11.6" />
+    <ProjectReference Include="../ClrLens.Core/ClrLens.Core.csproj" />
+    <ProjectReference Include="../ClrLens.Rewriter/ClrLens.Rewriter.csproj" />
+  </ItemGroup>
+  <ItemGroup Condition="$([MSBuild]::IsOSPlatform('Linux'))">
+    <None Include="$(PkgMicrosoft_Z3_x64)/runtimes/ubuntu-x64/native/libz3.so" Link="libz3.so" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+  </ItemGroup>
 </Project>
