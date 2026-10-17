@@ -1,7 +1,8 @@
 # T18 — Implementar SMT e translation validation
 
 **Fase:** 6 — Reescrita e validação  
-**Status:** Não iniciado  
+**Status:** Concluído
+
 **Prioridade:** Média
 
 ## Objetivo

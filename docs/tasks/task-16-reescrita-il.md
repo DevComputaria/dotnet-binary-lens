@@ -1,7 +1,8 @@
 # T16 — Implementar reescrita IL
 
 **Fase:** 6 — Reescrita e validação  
-**Status:** Não iniciado  
+**Status:** Concluído
+
 **Prioridade:** Média / opt-in
 
 ## Objetivo
